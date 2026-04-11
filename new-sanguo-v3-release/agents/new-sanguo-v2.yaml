@@ -1,0 +1,35 @@
+# OpenClaw Agent 配置
+# 新三国梗系统 v2.0
+
+agent:
+  name: new-sanguo-v2
+  description: 新三国（2010年版）梗系统 v2.0 - 支持录入/查询/输出三大模块
+  
+  # Python运行时配置
+  runtime: python
+  entry: agent.py:create_agent  # 模块路径:工厂函数
+  
+  # 启动参数
+  args:
+    user_id: "{{user_id}}"  # 动态传入用户ID
+  
+  # 依赖声明（可选，用于自动安装）
+  dependencies:
+    - sentence-transformers
+    - numpy
+    - pyyaml
+
+# Skill引用（用于LLM提示）
+skills:
+  - new-sanguo-v2
+
+# 数据文件
+resources:
+  database: data/genku.db
+  source_yaml: ../new-sanguo/data/genku.yaml  # 复用旧数据
+
+# 权限声明
+capabilities:
+  - read_file
+  - write_file
+  - sqlite_access

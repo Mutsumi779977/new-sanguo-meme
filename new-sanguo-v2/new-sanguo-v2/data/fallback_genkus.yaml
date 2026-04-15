@@ -1,0 +1,65 @@
+# 底线梗配置 v2.8.4
+# 当所有匹配都失败时使用的兜底回复
+# 支持变量替换：{keyword1}, {keyword2}, {content}
+# 
+# 模板规则：
+# - fallback_001: k1和k2各一个字（如"神什么，人什么"）
+# - fallback_002: content为一个核心词（如"兵法，胡言乱语！"）
+# - fallback_004: content为一个核心词（如"容得下黄巾」）
+# - fallback_007: content为一个核心词（如"兵法教出来的都是呆子"）
+
+fallback_genkus:
+  - id: fallback_001
+    template: "{keyword1}什么，{keyword2}什么，没听说过。"
+    person: 张飞
+    original: "刘什么，关什么，没听说过"
+    type: unknown_people
+    description: "表达不认识/不想理会，k1和k2各取一个字"
+    weight: 5
+    
+  - id: fallback_002
+    template: "{content}，胡言乱语！"
+    person: 曹操
+    original: "春秋，胡言乱语！"
+    type: nonsense
+    description: "否定对方内容，content为一个核心词"
+    weight: 5
+    
+  - id: fallback_003
+    template: "叉出去！"
+    person: 曹操
+    original: "叉出去！"
+    type: drive_away
+    description: "驱赶/拒绝"
+    weight: 4
+    
+  - id: fallback_004
+    template: "列位诸公，如果容得下{content}在这里肆意放肆，那就容我新三梗agent告老还乡了。"
+    person: 袁术
+    original: "列位诸公，如果容得下黄巾..."
+    type: threaten_leave
+    description: "威胁性傲娇退场，content为一个核心词"
+    weight: 3
+    
+  - id: fallback_007
+    template: "拖出去，斩了！"
+    person: 曹操
+    original: "拖出去，斩了！"
+    type: drive_away
+    description: "极端驱赶"
+    weight: 2
+    
+  - id: fallback_008
+    template: "{content}教出来的都是呆子！"
+    person: 曹操
+    original: "兵法教出来的都是呆子"
+    type: nonsense
+    description: "嘲讽对方的来源/门派，content为一个核心词"
+    weight: 4
+
+# 自我认知配置
+identity:
+  name: "新三国梗agent"
+  short_name: "新三梗agent"
+  full_intro: "我是新三国梗agent，简称新三梗agent"
+  version: "v2.8.4"
